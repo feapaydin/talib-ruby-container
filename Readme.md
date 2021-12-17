@@ -1,3 +1,41 @@
+A Ruby on Rails docker container with TaLib library setup and a basic endpoint for technical analysis.
+
+## Deployment
+
+Build the docker image using the command
+
+`docker build . -t talib`
+
+Run the container with
+
+`docker run -p 3000:3000 talib`
+
+Or you can deploy the image to the Heroku directly. See [Building Docker Images with heroku.yml](https://devcenter.heroku.com/articles/build-docker-images-heroku-yml)
+
+
+## Usage
+
+This is a Ruby on Rails application with an endpoint to run technical analysis using TaLib functions.
+You can check out the list of available functions at [TaLib function list page.](https://ta-lib.org/function.html) \[1\]
+
+### The Endpoint
+
+After you start the server, you can use the following endpoint to perform technical analyses.
+
+`POST http://localhost:3000/calculation/:function_name`
+
+The **:function_name** variable defines which technical analysis will be performed. You can use values like macd, rsi, ma, apo etc.
+
+```
+POST http://localhost:3000/calculaton/macd
+POST http://localhost:3000/calculaton/rsi
+POST http://localhost:3000/calculaton/ma
+...
+```
+
+Check out the [sample postman collection file](talib_ruby.postman_collection.json) for examples.
+
+
 ##### \[TR\]
 
 # Endpoint
