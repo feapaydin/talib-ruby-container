@@ -5,14 +5,17 @@ class RsiCalculator < ApplicationService
   attr_reader :payload, :error
 
   def initialize(args)
-    super
+    super()
     @args = args.to_h
   end
 
   def call
-    f = TaLib::Function.new(function: :rsi, args: %i[inReal inTimePeriod])
-    f.call(inReal: @args[:data], inTimePeriod: @args[:period])
+    f = TaLib::Function.new('RSI')
+    f.in_real(0, @args[:data])
+    f.opt_int(0, @args[:period])
+    f.out_real(0, @payload)
+    f.call(0, @data.size)
 
-    @payload = f.output
+    @payload.nil?
   end
 end

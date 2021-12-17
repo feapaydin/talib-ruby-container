@@ -19,13 +19,13 @@ RUN env ARCHFLAGS="-arch PLATFORM" gem install talib_ruby -- \
     --with-talib-lib=/ta-lib/lib
 
 # Ruby
-# WORKDIR /app
-# COPY talib-calculations /app
-# RUN bundle install
+WORKDIR /app
+COPY talib-calculations /app
+# COPY talib-calculations/Gemfile /app/Gemfile
+# COPY talib-calculations/Gemfile.lock /app/Gemfile.lock
 
-# EXPOSE 3000
+RUN bundle install
 
-# CMD ["rails", "server", "-b", "0.0.0.0"]
+EXPOSE 3000
 
-COPY test.rb .
-CMD ["ruby", "test.rb"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
