@@ -36,23 +36,40 @@ class TechnicalAnalyzer < ApplicationService
 
   def talib
     f = TaLib::Function.new(@function_name.upcase)
-    data_size = @data.map(&:size).max
 
+    data_size = @data.map(&:size).max
+    outs = []
+
+    f = talib_decorate_data(f)
+    f = talib_decorate_opts(f)
+    f = talib_decorate_outs(f, outs, data_size)
+    f.call(0, data_size)
+
+    outs.map(&:compact)
+  end
+
+  def talib_decorate_data(f)
     @data.each_with_index do |data, i|
       f.in_real(i, data)
     end
 
+    f
+  end
+
+  def talib_decorate_opts(f)
     @opts&.each_with_index do |opt, i|
       f.opt_int(i, opt.to_i)
     end
 
-    outs = []
+    f
+  end
+
+  def talib_decorate_outs(f, outs, data_size)
     f.outs.times do |out_index|
       outs[out_index] = Array.new(data_size)
       f.out_real(out_index, outs[out_index])
     end
 
-    f.call(0, data_size)
-    outs.map(&:compact)
+    f
   end
 end
