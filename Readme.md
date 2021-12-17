@@ -4,7 +4,7 @@
 
 **İstek Yolu:** /calculation/:function_name
 
-[örnek postman dosyası](TaLib Ruby.postman_collection.json)
+[Örnek Postman Dosyası](talib_ruby.postman_collection.json)
 
 ## Fonksiyon Listesi
 
