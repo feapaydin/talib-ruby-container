@@ -1,7 +1,7 @@
 # Actions to call calculation services
 class CalculationController < ApplicationController
   def rsi
-    service = RsiCalculator.call(rsi_params)
+    service = RsiCalculator.call(params)
 
     if service.result
       render_success service.payload

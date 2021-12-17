@@ -6,16 +6,26 @@ class RsiCalculator < ApplicationService
 
   def initialize(args)
     super()
-    @args = args.to_h
+    @args = args
   end
 
   def call
-    f = TaLib::Function.new('RSI')
-    f.in_real(0, @args[:data])
-    f.opt_int(0, @args[:period])
-    f.out_real(0, @payload)
-    f.call(0, @data.size)
+    @payload = talib_rsi(@args[:data], @args[:period])
 
-    @payload.nil?
+    !@payload.nil?
+  end
+
+  private
+
+  def talib_rsi(data, period)
+    f = TaLib::Function.new('RSI')
+    out = Array.new(data.size)
+
+    f.in_real(0, data)
+    f.opt_int(0, period)
+    f.out_real(0, out)
+    f.call(0, data.size)
+    
+    out.compact[0...-1]
   end
 end

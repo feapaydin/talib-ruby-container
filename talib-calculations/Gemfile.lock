@@ -148,6 +148,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    talib_ruby (1.0.6)
     thor (1.1.0)
     thread_safe (0.3.6)
     tzinfo (2.0.4)
@@ -173,6 +174,7 @@ DEPENDENCIES
   rails-patterns
   spring
   sqlite3 (~> 1.4)
+  talib_ruby
   tzinfo-data
 
 RUBY VERSION
