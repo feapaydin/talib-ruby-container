@@ -2,7 +2,7 @@
 class CalculationController < ApplicationController
   def rsi
     service = RsiCalculator.call(params)
-
+  
     if service.result
       render_success service.payload
     else
@@ -10,10 +10,13 @@ class CalculationController < ApplicationController
     end
   end
 
+  def macd
+    service = MacdCalculator.call(params)
 
-  private
-
-  def rsi_params
-    params.permit(:data, :period)
+    if service.result
+      render_success service.payload
+    else
+      render_bad_request service.error
+    end
   end
 end

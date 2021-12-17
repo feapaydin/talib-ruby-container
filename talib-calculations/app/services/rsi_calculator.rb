@@ -4,15 +4,18 @@ require 'talib_ruby'
 class RsiCalculator < ApplicationService
   attr_reader :payload, :error
 
-  def initialize(args)
+  def initialize(request_params)
     super()
-    @args = args
+    @args = request_params
   end
 
   def call
     @payload = talib_rsi(@args[:data], @args[:period])
 
     !@payload.nil?
+  rescue RuntimeError => e
+    @error = e.message
+    false
   end
 
   private
@@ -25,7 +28,7 @@ class RsiCalculator < ApplicationService
     f.opt_int(0, period)
     f.out_real(0, out)
     f.call(0, data.size)
-    
+
     out.compact[0...-1]
   end
 end
