@@ -34,6 +34,9 @@ class TechnicalAnalyzer < ApplicationService
     true
   end
 
+  # Uses TaLib library to call methods dynamically.
+  # https://www.rubydoc.info/gems/talib_ruby/1.0.6/TaLib/Function#outs-instance_method
+  # https://ta-lib.org/d_api/d_api.html (3.1. Direct Call to a TA Function)
   def talib
     f = TaLib::Function.new(@function_name.upcase)
 

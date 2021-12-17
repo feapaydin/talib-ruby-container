@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "8c5b5f8a-ce94-449a-8529-b11c47880217",
+		"name": "TaLib Ruby",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Technical Analysis",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data_list\": [\n        [47260, 47628, 48871, 48366, 46703, 50081, 49314, 47137, 47596, 50473, 50595, 50562, 49405, 49195, 53631, 56496, 57210, 56882, 57794, 57291, 54765, 53730, 58935, 57171, 57573, 56308, 58714, 59717, 58083, 56955, 60367, 60089, 63597, 65508, 64398, 64134, 64806, 64932, 66904, 67527, 63273, 61483, 60974, 61412, 62918, 63221, 60915, 61309, 61840, 62242, 60582, 58438, 60310, 63067, 60866, 61312, 60690, 62210, 65979, 64278, 62056, 61527, 60861, 61672, 57345, 57380, 56015, 57477, 54687, 54942, 53914, 53783, 55323, 51469, 49227, 48200, 47666, 48146]\n    ],\n    \"option_list\": [12, 26, 9]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/calculation/macd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"calculation",
+						"macd"
+					]
+				},
+				"description": "##### \\[TR\\]  \nFonksiyon Listesi\n\nURL'nin en sonunda yer alan kısım (macd, rsi, apo...) gibi istenen fonksiyon için dinamiktir.\n\nTüm fonksiyonların listesi:  \n[https://ta-lib.org/function.html](https://ta-lib.org/function.html) \\[1\\]\n\n## Parametreler\n\nHer metodun aldığı parametreler farklıdır. Örneğin momentum metodları için hangi metodun hangi parametreyi alacağına aşağıdan bakılabilir:  \n[https://mrjbq7.github.io/ta-lib/func_groups/momentum_indicators.html](https://mrjbq7.github.io/ta-lib/func_groups/momentum_indicators.html) \\[2\\]\n\nTüm fonksiyonların parametreleri için:  \n[https://mrjbq7.github.io/ta-lib/doc_index.html](https://mrjbq7.github.io/ta-lib/doc_index.html) \\[3\\]\n\nBuradaki fonksiyonların *high, low, close, volume* gibi veriyi ifade eden parametreleri dokümanda yazan sırayla **data_list** içerisine array olarak gönderilmelidir. Geriye kalan veriler **option_list** içerisinde yine aynı sırayla gönderilebilir.\n\n### MACD Örnek\n\nÖrneğin MACD için dokümanda belirtilen parametreler  \n`MACD(close, fastperiod=12, slowperiod=26, signalperiod=9)`  \nşeklindedir.  \nBurada yazan *close* günlük kapanış datasıdır ve data_list içerisinde array olarak gönderilir.  \nGeriye kalan *fastperiod, slowperiod, signalperiod* verileri sırasıyla **option_list** içerisinde 12,26,9 olarak gönderilir.\n\n### MFI Örnek\n\nMFI için ise durum farklıdır.  \n`MFI(high, low, close, volume, timeperiod=14)`  \nAynı anda *high, low, close, volume* verileri alır. Bunların üçü de aynı sırayla **data_list** içinde array olarak gönderilmelidir. En sonda yer alan *timeperiod* ise **option_list** içerisinde arrayın tek elemanı olarak gönderilmelidir.\n\n## Response\n\nBazı metodlar birden çok output yaratır. Örneğin RSI fonksiyonu tek bir array olarak yanıt dönerken MACD üç ayrı array yanıtı döner. Bu yanıtlar çağırılan fonksiyona göre kaç tane olursa olsun gelen cevapta payload arrayı içerisinde yer alır.\n\nMACD için:\n\n*   payload\\[0\\] = macd dizisi\n*   payload\\[1\\] = macd_signal dizisi\n*   payload\\[2\\] = macd_hist dizisi\n    \n\nHangi foksiyonun kaç değer döndürdüğü yukarıdaki **referans\\[2\\]** ve **referans\\[3\\]** de mevcuttur.\n\n## Yararlı Kaynaklar\n\n[https://ta-lib.org/d_api/d_api.html](https://ta-lib.org/d_api/d_api.html)  \nTaLib metodlarının dinamik yapısını anlamak için **3.1. Direct Call to a TA Function** kısmına göz atın.\n\n*Furkan Enes, Aralık 2021*"
+			},
+			"response": []
+		}
+	]
+}
