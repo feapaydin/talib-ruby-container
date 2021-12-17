@@ -27,15 +27,15 @@ After you start the server, you can use the following endpoint to perform techni
 The **:function_name** variable defines which technical analysis will be performed. You can use values like macd, rsi, ma, apo etc.
 
 ```
-POST http://localhost:3000/calculaton/macd
-POST http://localhost:3000/calculaton/rsi
-POST http://localhost:3000/calculaton/ma
+POST http://localhost:3000/calculation/macd
+POST http://localhost:3000/calculation/rsi
+POST http://localhost:3000/calculation/ma
 ...
 ```
 
 Check out the [sample postman collection file](talib_ruby.postman_collection.json) for examples.
 
-
+___
 ##### \[TR\]
 
 # Endpoint
