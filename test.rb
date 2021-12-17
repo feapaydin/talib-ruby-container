@@ -47,6 +47,7 @@ def talib_macd(data)
   f.opt_int(0, 12)
   f.opt_int(1, 26)
   f.opt_int(2, 9)
+
   f.out_real(0, macd)
   f.out_real(1, macdsignal)
   f.out_real(2, macdhist)
@@ -60,4 +61,3 @@ def talib_macd(data)
 end
 
 p talib_macd(data)
-

@@ -1,6 +1,3 @@
 Rails.application.routes.draw do
-  namespace :calculation do
-    post 'rsi'
-    post 'macd'
-  end
+  post 'calculation/:function_name', to: 'calculation#technical_analysis'
 end
