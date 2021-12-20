@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: ruby /app/src/test.rb
+  web: rails server -b 0.0.0.0
